@@ -1,7 +1,6 @@
 {
   "buildCommand": "pip install --break-system-packages -r serverless_bot/requirements.txt",
   "framework": null,
-  "outputDirectory": "api",
   "functions": {
     "api/index.py": {
       "maxDuration": 30
