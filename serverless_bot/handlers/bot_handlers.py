@@ -70,6 +70,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = (
         "👋 Chào bạn!\n"
         "Hãy gửi PDF thời khóa biểu hoặc file CSV/TXT (xuất từ myDTU) để mình phân tích và lưu lịch học.\n\n"
+        "📥 TIỆN ÍCH XUẤT LỊCH PDF (myDTU):\n"
+        "• MediaFire: https://www.mediafire.com/folder/lnjtg2o3zxsf7/mydtu-schedule-pdf\n"
+        "• Google Drive: https://drive.google.com/drive/folders/1E2_epNUd-oeot6CrmUQhX73TcY1pZYK9?usp=drive_link\n"
+        "Cài tiện ích -> vào myDTU.duytan.edu.vn -> Thời khóa biểu -> Bấm Xuất PDF -> gửi file cho bot\n\n"
         "Các lệnh:\n"
         "/today - Xem lịch hôm nay\n"
         "/tomorrow - Xem lịch ngày mai\n"
@@ -77,16 +81,22 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/next - Tiết học tiếp theo\n"
         "/lich - Xem lịch gần nhất\n"
         "/delete - Xóa lịch học\n"
-        "/help - Hướng dẫn"
+        "/help - Hướng dẫn chi tiết"
     )
     await update.message.reply_text(text)
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = (
         "📖 HƯỚNG DẪN SỬ DỤNG\n\n"
-        "1. Gửi file PDF (Xuất Lịch PDF myDTU) HOẶC file CSV/TXT (xuất từ trang Đăng ký môn) vào bot\n"
-        "2. Bot sẽ phân tích và hiển thị lịch để bạn xác nhận\n"
-        "3. Chọn:\n"
+        "📥 BƯỚC 1 - TẢI TIỆN ÍCH XUẤT LỊCH PDF:\n"
+        "• MediaFire: https://www.mediafire.com/folder/lnjtg2o3zxsf7/mydtu-schedule-pdf\n"
+        "• Google Drive: https://drive.google.com/drive/folders/1E2_epNUd-oeot6CrmUQhX73TcY1pZYK9?usp=drive_link\n"
+        "Cài đặt -> vào myDTU.duytan.edu.vn -> Đăng nhập -> Thời khóa biểu\n"
+        "Bấm nút Xuất PDF của tiện ích để tải file\n\n"
+        "📄 BƯỚC 2 - GỬI CHO BOT:\n"
+        "Gửi file PDF (hoặc CSV/TXT từ trang Đăng ký môn) vào bot\n"
+        "Bot sẽ phân tích và hiển thị lịch để bạn xác nhận\n"
+        "Chọn:\n"
         "   ✅ Thay thế lịch cũ (mặc định)\n"
         "   ➕ Cộng thêm vào lịch hiện tại\n"
         "   ❌ Hủy\n\n"
