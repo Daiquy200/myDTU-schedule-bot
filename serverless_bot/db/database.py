@@ -19,7 +19,15 @@ class Database:
         self.db_url = os.getenv("DATABASE_URL")
         self.use_postgres = self.db_url and self.db_url.startswith("postgres") and POSTGRES_AVAILABLE
         self.pool = None
-        self._init_db()
+        try:
+            self._init_db()
+        except Exception as e:
+            logger.warning(f"DB init warning (will retry on demand): {e}")
+
+    def _get_db_path(self):
+        # Vercel filesystem is read-only except /tmp
+        default = "/tmp/schedule.db" if os.getenv("VERCEL") else "schedule.db"
+        return os.getenv("SQLITE_PATH", default)
 
     def _init_db(self):
         if self.use_postgres:
@@ -57,7 +65,7 @@ class Database:
                     cur.execute("CREATE INDEX IF NOT EXISTS idx_schedules_user_date ON schedules(user_id, date)")
                     conn.commit()
         else:
-            db_path = os.getenv("SQLITE_PATH", "schedule.db")
+            db_path = self._get_db_path()
             with self.get_conn() as conn:
                 conn.execute("""
                     CREATE TABLE IF NOT EXISTS users (
@@ -99,7 +107,7 @@ class Database:
             finally:
                 self.pool.putconn(conn)
         else:
-            db_path = os.getenv("SQLITE_PATH", "schedule.db")
+            db_path = self._get_db_path()
             conn = sqlite3.connect(db_path)
             conn.row_factory = sqlite3.Row
             try:
