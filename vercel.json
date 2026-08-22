@@ -4,7 +4,7 @@
   "rewrites": [
     { "source": "/webhook", "destination": "/api" },
     { "source": "/health", "destination": "/api" },
-    { "source": "/(.*)", "destination": "/api" }
+    { "source": "/", "destination": "/api" }
   ],
   "functions": {
     "api/index.py": {
