@@ -1,7 +1,11 @@
 {
   "buildCommand": "pip install --break-system-packages -r serverless_bot/requirements.txt",
   "framework": null,
-  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/webhook", "destination": "/api" },
+    { "source": "/health", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/api" }
+  ],
   "functions": {
     "api/index.py": {
       "maxDuration": 30
